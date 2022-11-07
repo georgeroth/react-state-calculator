@@ -48,3 +48,6 @@ html {
 .store-btn {
   margin-top: 4px;
 }
+.recall-btn {
+  grid-column: 1/-1;
+}

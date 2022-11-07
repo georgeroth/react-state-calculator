@@ -11,13 +11,15 @@ function App() {
   function displayNumber(number) {
     if (firstNumber[0] === '0' && number === 'c') {
       setFirstNumber('0')
+    } else if (number === 'c') {
+      console.log(firstNumber)
+      setFirstNumber('0')
     } else if (number === 'r') {
       setFirstNumber(storedNumber)
     } else if (firstNumber[0] === '0' || firstNumber[0] === undefined) {
-      console.log(firstNumber[0])
       setFirstNumber(number)
-    } else if (number === 'c') {
-      setFirstNumber('0')
+    } else if (firstNumber.includes('.') && number === '.') {
+      return
     } else {
       console.log(firstNumber[0])
       setFirstNumber(firstNumber + number)
@@ -27,12 +29,14 @@ function App() {
   function displaySecondNumber(number) {
     if (secondNumber[0] === '0' && number === 'c') {
       setSecondNumber('0')
+    } else if (number === 'c') {
+      setSecondNumber('0')
     } else if (number === 'r') {
       setSecondNumber(storedNumber)
     } else if (secondNumber[0] === '0' || secondNumber[0] === undefined) {
       setSecondNumber(number)
-    } else if (number === 'c') {
-      setSecondNumber('0')
+    } else if (secondNumber.includes('.') && number === '.') {
+      return
     } else {
       setSecondNumber(secondNumber + number)
     }
@@ -70,7 +74,10 @@ function App() {
           <button onClick={() => displayNumber('9')}>9</button>
           <button onClick={() => displayNumber('0')}>0</button>
           <button onClick={() => displayNumber('c')}>Clear</button>
-          <button onClick={() => displayNumber('r')}>Recall</button>
+          <button onClick={() => displayNumber('.')}>.</button>
+          <button className="recall-btn" onClick={() => displayNumber('r')}>
+            Recall
+          </button>
         </div>
       </div>
 
@@ -98,7 +105,13 @@ function App() {
           <button onClick={() => displaySecondNumber('9')}>9</button>
           <button onClick={() => displaySecondNumber('0')}>0</button>
           <button onClick={() => displaySecondNumber('c')}>Clear</button>
-          <button onClick={() => displaySecondNumber('r')}>Recall</button>
+          <button onClick={() => displaySecondNumber('.')}>.</button>
+          <button
+            className="recall-btn"
+            onClick={() => displaySecondNumber('r')}
+          >
+            Recall
+          </button>
         </div>
       </div>
       <div className="panel answer">
@@ -116,5 +129,5 @@ function App() {
     </div>
   )
 }
-
+console.log(+'1.')
 export default App
